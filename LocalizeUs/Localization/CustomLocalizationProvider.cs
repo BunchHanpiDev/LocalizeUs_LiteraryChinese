@@ -6,22 +6,16 @@ using Reactor.Utilities;
 
 namespace LocalizeUs.Localization;
 
-public class CustomocalizationProvider : LocalizationProvider
+public class CustomLocalizationProvider : LocalizationProvider
 {
     private static bool _loadedStrings;
     public override int Priority => ReactorPriority.High;
-    private static LocalizationProvider? _reactorProvider;
 
     public override bool TryGetText(StringNames stringName, out string? result)
     {
-        if ((int)stringName >= 0 && _reactorProvider!.TryGetText(stringName, out var reactorText))
+        if ((int)stringName >= 0)
         {
-            if (reactorText.IsNullOrWhiteSpace())
-            {
-                result = "STRMISS";
-                return true;
-            }
-            var localeText = CustomLocale.GetParsed(reactorText!);
+            var localeText = CustomLocale.GetParsed(stringName);
             if (!localeText.Contains("STRMISS"))
             {
                 result = localeText;
@@ -42,10 +36,6 @@ public class CustomocalizationProvider : LocalizationProvider
 
     public override void OnLanguageChanged(SupportedLangs newLanguage)
     {
-        if (_reactorProvider == null)
-        {
-            _reactorProvider = LocalizationManager.Providers.First(x => x is HardCodedLocalizationProvider);
-        }
         if (!_loadedStrings)
         {
             CustomLocale.LoadExternalLocale();
@@ -56,7 +46,7 @@ public class CustomocalizationProvider : LocalizationProvider
         {
             LocalizeUsPlugin.Culture = new(culture);
         }
-        Warning($"<?xml version='1.0' encoding='UTF-8'?>");
+        /*Warning($"<?xml version='1.0' encoding='UTF-8'?>");
         Warning($"<resources>");
         foreach (var stringName in TranslationController.Instance.currentLanguage.AllStrings)
         {
@@ -65,6 +55,6 @@ public class CustomocalizationProvider : LocalizationProvider
             value = value.Replace("}", "\\%");
             Warning($"<string name=\"{stringName.Key}\">{value}</string>");
         }
-        Warning($"</resources>");
+        Warning($"</resources>");*/
     }
 }

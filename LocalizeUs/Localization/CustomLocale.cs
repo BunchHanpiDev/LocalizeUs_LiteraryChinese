@@ -14,7 +14,7 @@ namespace LocalizeUs.Localization;
 
 public static class CustomLocale
 {
-    public static string LocaleDirectory => Path.Combine(Application.persistentDataPath, "TownOfUs", "Locales");
+    public static string LocaleDirectory => Path.Combine(Application.persistentDataPath, "LocalizeUs", "Locales");
 
     public static Dictionary<SupportedLangs, string> LangList { get; } = new()
     {
@@ -58,9 +58,7 @@ public static class CustomLocale
     };
 
     public static string BepinexLocaleDirectory =>
-        Path.Combine(BepInEx.Paths.BepInExRootPath, "MiraLocales", "TownOfUs");
-
-    /*public static Dictionary<string, StringNames> CustomLocaleList { get; } = [];*/
+        Path.Combine(BepInEx.Paths.BepInExRootPath, "CustomLocales", "LocalizeUs");
 
     public static Dictionary<string, string> TmpTextList { get; } = new()
     {
@@ -69,11 +67,11 @@ public static class CustomLocale
     };
 
     // Language, Xml Name, then Value
-    public static Dictionary<SupportedLangs, Dictionary<string, string>> CustomLocalization { get; } = [];
+    public static Dictionary<SupportedLangs, Dictionary<StringNames, string>> CustomLocalization { get; } = [];
 
     internal static ManualLogSource Logger { get; } = BepInEx.Logging.Logger.CreateLogSource("CustomLocale");
 
-    public static string Get(string name, string? defaultValue = null)
+    public static string Get(StringNames name, string? defaultValue = null)
     {
         var currentLanguage =
             TranslationController.InstanceExists
@@ -82,7 +80,7 @@ public static class CustomLocale
         return Get(currentLanguage, name, defaultValue);
     }
 
-    public static string Get(SupportedLangs language, string name, string? defaultValue = null)
+    public static string Get(SupportedLangs language, StringNames name, string? defaultValue = null)
     {
         if (CustomLocalization.TryGetValue(language, out var translations) &&
             translations.TryGetValue(name, out var translation))
@@ -98,7 +96,7 @@ public static class CustomLocale
 
         return defaultValue ?? "STRMISS_" + name;
     }
-    public static string GetParsed(string name, string? defaultValue = null,
+    public static string GetParsed(StringNames name, string? defaultValue = null,
         Dictionary<string, string>? parseList = null)
     {
         var currentLanguage =
@@ -108,7 +106,7 @@ public static class CustomLocale
         return GetParsed(currentLanguage, name, defaultValue, parseList);
     }
 
-    public static string GetParsed(SupportedLangs language, string name, string? defaultValue = null,
+    public static string GetParsed(SupportedLangs language, StringNames name, string? defaultValue = null,
         Dictionary<string, string>? parseList = null)
     {
         var text = defaultValue ?? "STRMISS_" + name;
@@ -173,7 +171,7 @@ public static class CustomLocale
         foreach (var locale in LangList)
         {
             using var resourceStream =
-                assembly.GetManifestResourceStream("TownOfUs.Resources.Locale." + locale.Value);
+                assembly.GetManifestResourceStream("LocalizeUs.Resources.Locale." + locale.Value);
             if (resourceStream == null)
             {
                 Logger.LogError($"Language is not added: {locale.Key.ToDisplayString()}");
@@ -214,45 +212,6 @@ public static class CustomLocale
             var xmlContent = File.ReadAllText(file);
             ParseXmlFile(xmlContent, language);
         }
-
-        var translations = Directory.GetFiles(directory, "*.txt");
-        foreach (var file in translations)
-        {
-            var localeName = Path.GetFileNameWithoutExtension(file);
-            if (!Enum.TryParse<SupportedLangs>(localeName, out var language))
-            {
-                Logger.LogError($"Invalid locale name: {localeName}");
-                continue;
-            }
-
-            CustomLocalization.TryAdd(language, []);
-            ParseFile(file, language);
-        }
-    }
-
-    public static void ParseFile(string file, SupportedLangs language)
-    {
-        foreach (var translation in File.ReadAllLines(file))
-        {
-            var parts = translation.Split('=');
-            if (parts.Length >= 2)
-            {
-                var key = parts[0];
-                var value = string.Join("=", parts.Skip(1));
-
-                if (CustomLocalization[language].ContainsKey(key))
-                {
-                    var ogValuePair = CustomLocalization[language].FirstOrDefault(x => x.Key == key);
-                    CustomLocalization[language].Remove(ogValuePair.Key);
-                }
-
-                CustomLocalization[language].TryAdd(key, value);
-            }
-            else
-            {
-                Logger.LogWarning("Invalid translation format: " + translation);
-            }
-        }
     }
 
     public static void ParseXmlFile(string xmlContent, SupportedLangs language)
@@ -272,20 +231,17 @@ public static class CustomLocale
                     {
                         string name = node.Attributes["name"]!.Value;
                         string value = node.InnerText;
-
-                        if (CustomLocalization[language].ContainsKey(name))
+                        
+                        if (Enum.TryParse<StringNames>(name, out var realStringName))
                         {
-                            var ogValuePair = CustomLocalization[language].FirstOrDefault(x => x.Key == name);
-                            CustomLocalization[language].Remove(ogValuePair.Key);
+                            if (CustomLocalization[language].ContainsKey(realStringName))
+                            {
+                                var ogValuePair = CustomLocalization[language].FirstOrDefault(x => x.Key == realStringName);
+                                CustomLocalization[language].Remove(ogValuePair.Key);
+                            }
+
+                            CustomLocalization[language].TryAdd(realStringName, value);
                         }
-
-                        CustomLocalization[language].TryAdd(name, value);
-
-                        /*if (language is SupportedLangs.English && !CustomLocaleList.ContainsKey(name))
-                        {
-                            var stringName = CustomStringName.CreateAndRegister(name);
-                            CustomLocaleList.TryAdd(name, stringName);
-                        }*/
                     }
                 }
 
