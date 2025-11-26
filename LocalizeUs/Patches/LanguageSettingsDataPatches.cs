@@ -26,7 +26,7 @@ public static class LanguageSettingsDataPatches
     public static void OnSaveStartPostfix(LanguageSettingsData __instance)
     {
         var customLang = (ExtendedLangs)__instance.cachedLanguage;
-        if (Enum.IsDefined(typeof(ExtendedLangs), customLang))
+        if (Enum.IsDefined(customLang))
         {
             __instance.language = __instance.cachedLanguage.ToString();
         }

@@ -8,7 +8,7 @@ namespace LocalizeUs.Localization;
 
 public class CustomLocalizationProvider : LocalizationProvider
 {
-    private static bool _loadedStrings;
+    private bool _loadedStrings;
     public override int Priority => ReactorPriority.High;
 
     public override bool TryGetText(StringNames stringName, out string? result)

@@ -21,17 +21,21 @@ public sealed partial class LocalizeUsPlugin : BasePlugin
     {
         CustomLocale.Initialize();
     }
+
     public Harmony Harmony { get; } = new(Id);
 
     public override void Load()
     {
-        EnumInjector.InjectEnumValues<StringNames>(new Dictionary<string, object>{{"LangPolish", 2860}});
-        EnumInjector.InjectEnumValues<SupportedLangs>(new Dictionary<string, object>{{"Polish", (int)ExtendedLangs.Polish}});
+        EnumInjector.InjectEnumValues<StringNames>(new Dictionary<string, object>
+            { { "LangPolish", 2860 }, { "LangTurkish", 2861 }, { "LangSwedish", 2862 }, { "LangLithuanian", 2863 } });
+        EnumInjector.InjectEnumValues<SupportedLangs>(new Dictionary<string, object>
+        {
+            { "Polish", (int)ExtendedLangs.Polish }, { "Turkish", (int)ExtendedLangs.Turkish },
+            { "Swedish", (int)ExtendedLangs.Swedish }, { "Lithuanian", (int)ExtendedLangs.Lithuanian }
+        });
         ReactorCredits.Register<LocalizeUsPlugin>(location =>
             location == ReactorCredits.Location.MainMenu || location == ReactorCredits.Location.PingTracker);
 
         Harmony.PatchAll();
-
-        //LocalizationManager.Register(new SubmergedLocalizationProvider());
     }
 }

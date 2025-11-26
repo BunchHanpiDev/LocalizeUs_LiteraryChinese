@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text;
 using AmongUs.Data;
 using AmongUs.Data.Settings;
@@ -9,30 +10,38 @@ namespace LocalizeUs.Patches;
 [HarmonyPatch]
 public static class TranslationControllerRegisterPatch
 {
+    public static void AddLangSet(ExtendedLangs newLanguage, string localName, string engName)
+    {
+        var dataManager = ReferenceDataManager.Instance.Refdata.languages;
+        var englishData = dataManager.ToArray().First(x => x.languageID is SupportedLangs.English);
+        var turkish = ScriptableObject.CreateInstance<TranslatedImageSet>();
+        turkish.Name = localName;
+        turkish.languageID = (SupportedLangs)newLanguage;
+        var builder = new StringBuilder();
+        // Using "\t" forces a tab space to be placed, which is what the text asset requires to be read by the game.
+        builder.Append(CultureInfo.InvariantCulture, $"KEY ID\t{engName}");
+        foreach (var pair in CustomLocale.InternalLocalization[newLanguage])
+        {
+            builder.Append(CultureInfo.InvariantCulture, $"\n{pair.Key}\t{pair.Value}");
+        }
+
+        var newLocaleData = new TextAsset(builder.ToString());
+        turkish.Data = newLocaleData;
+        turkish.CensorSet = englishData.CensorSet;
+        dataManager.Add(turkish);
+    }
+
     [HarmonyPatch(typeof(TranslationController), nameof(TranslationController.Initialize))]
     [HarmonyPrefix]
     public static void InitPrefix(TranslationController __instance)
     {
-        var dataManager = ReferenceDataManager.Instance.Refdata.languages;
-        var englishData = dataManager.ToArray().First(x => x.languageID is SupportedLangs.English);
-        var polish = ScriptableObject.CreateInstance<TranslatedImageSet>();
-        polish.Name = "Polski";
-        polish.languageID = (SupportedLangs)ExtendedLangs.Polish;
-        /*Error($"English/Polish Data: {polish.Data.text}");*/
-        var builder = new StringBuilder();
-        builder.Append("KEY ID\tPolish");
-        foreach (var pair in CustomLocale.CustomLocalization[ExtendedLangs.Polish])
-        {
-            builder.Append($"\n{pair.Key}\t{pair.Value}");
-        }
-
-        var newPolskiData = new TextAsset(builder.ToString());
-        polish.Data = newPolskiData;
-        polish.CensorSet = englishData.CensorSet;
-        /*Error($"English/Polish CensorSet: {polish.CensorSet.text}");*/
-        dataManager.Add(polish);
+        AddLangSet(ExtendedLangs.Polish, "Polski", "Polish");
+        AddLangSet(ExtendedLangs.Turkish, "Türkçe", "Turkish");
+        AddLangSet(ExtendedLangs.Swedish, "Svenska", "Swedish");
+        AddLangSet(ExtendedLangs.Lithuanian, "Lietuvių", "Lithuanian");
     }
-    [HarmonyPatch(typeof(TranslationController), nameof(TranslationController.SetLanguage))]
+
+[HarmonyPatch(typeof(TranslationController), nameof(TranslationController.SetLanguage))]
     [HarmonyPrefix]
     public static bool SetLanguagePrefix(TranslationController __instance, SupportedLangs language)
     {

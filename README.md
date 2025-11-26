@@ -15,7 +15,14 @@
 A client-side [Among Us](https://store.steampowered.com/app/945360/Among_Us) mod for adding extra languages into the game!
 
 -----------------------
+# Actively Supported Languages
 
+- Lithuanian
+- Polish
+- Swedish
+- Turkish
+
+-----------------------
 # License
 This software is distributed under the GNU GPLv3 License. BepInEx is distributed under the LGPL-2.1 License.
 

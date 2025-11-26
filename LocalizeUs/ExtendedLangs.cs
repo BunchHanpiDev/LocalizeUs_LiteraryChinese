@@ -1,3 +1,5 @@
+namespace LocalizeUs;
+
 public enum ExtendedLangs
 {
     English,
@@ -16,5 +18,8 @@ public enum ExtendedLangs
     SChinese,
     TChinese,
     Irish,
-    Polish
+    Polish,
+    Turkish,
+    Swedish,
+    Lithuanian,
 }

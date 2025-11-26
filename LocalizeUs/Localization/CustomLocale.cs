@@ -34,7 +34,10 @@ public static class CustomLocale
         { ExtendedLangs.SChinese, "zh_CN.xml" },
         { ExtendedLangs.TChinese, "zh_TW.xml" },
         { ExtendedLangs.Irish, "ga_IE.xml" },
-        { ExtendedLangs.Polish, "pl_PL.xml" } // Custom
+        { ExtendedLangs.Polish, "pl_PL.xml" }, // Custom
+        { ExtendedLangs.Turkish, "tr_TR.xml" }, // Custom
+        { ExtendedLangs.Swedish, "sv_SE.xml" }, // Custom
+        { ExtendedLangs.Lithuanian, "lt_LT.xml" }, // Custom
     };
     public static Dictionary<ExtendedLangs, string> LangCultureList { get; } = new()
     {
@@ -54,7 +57,10 @@ public static class CustomLocale
         { ExtendedLangs.SChinese, "zh-CN" },
         { ExtendedLangs.TChinese, "zh-TW" },
         { ExtendedLangs.Irish, "ga-IE" },
-        { ExtendedLangs.Polish, "pl-PL" } // Custom
+        { ExtendedLangs.Polish, "pl-PL" }, // Custom
+        { ExtendedLangs.Turkish, "tr-TR" }, // Custom
+        { ExtendedLangs.Swedish, "sv-SE" }, // Custom
+        { ExtendedLangs.Lithuanian, "lt-LT" }, // Custom
     };
 
     public static string BepinexLocaleDirectory =>
@@ -66,7 +72,7 @@ public static class CustomLocale
         { "<and>", "&" },
     };
 
-    // Language, Xml Name, then Value
+    public static Dictionary<ExtendedLangs, Dictionary<string, string>> InternalLocalization { get; } = [];
     public static Dictionary<ExtendedLangs, Dictionary<string, string>> CustomLocalization { get; } = [];
 
     internal static ManualLogSource Logger { get; } = BepInEx.Logging.Logger.CreateLogSource("CustomLocale");
@@ -182,8 +188,8 @@ public static class CustomLocale
             using StreamReader reader = new(resourceStream);
             string xmlContent = reader.ReadToEnd();
 
-            CustomLocalization.TryAdd(locale.Key, []);
-            ParseXmlFile(xmlContent, locale.Key);
+            InternalLocalization.TryAdd(locale.Key, []);
+            ParseXmlFile(xmlContent, locale.Key, true);
         }
     }
 
@@ -210,12 +216,13 @@ public static class CustomLocale
             var language = LangList.FirstOrDefault(x => x.Value == localeName + ".xml").Key;
             CustomLocalization.TryAdd(language, []);
             var xmlContent = File.ReadAllText(file);
-            ParseXmlFile(xmlContent, language);
+            ParseXmlFile(xmlContent, language, false);
         }
     }
 
-    public static void ParseXmlFile(string xmlContent, ExtendedLangs language)
+    public static void ParseXmlFile(string xmlContent, ExtendedLangs language, bool isInternal)
     {
+        var localeList = isInternal ? InternalLocalization : CustomLocalization;
         XmlDocument xmlDoc = new XmlDocument();
         try
         {
@@ -232,18 +239,18 @@ public static class CustomLocale
                         string name = node.Attributes["name"]!.Value;
                         string value = node.InnerText;
                         
-                        if (CustomLocalization[language].ContainsKey(name))
+                        if (localeList[language].ContainsKey(name))
                         {
-                            var ogValuePair = CustomLocalization[language].FirstOrDefault(x => x.Key == name);
-                            CustomLocalization[language].Remove(ogValuePair.Key);
+                            var ogValuePair = localeList[language].FirstOrDefault(x => x.Key == name);
+                            localeList[language].Remove(ogValuePair.Key);
                         }
 
-                        CustomLocalization[language].TryAdd(name, value);
+                        localeList[language].TryAdd(name, value);
                     }
                 }
 
                 Logger.LogWarning(
-                    $"{CustomLocalization[language].Count} Localization strings added to {language.ToDisplayString()}!");
+                    $"{localeList[language].Count} Localization strings added to {language.ToDisplayString()}!");
             }
             else
             {
