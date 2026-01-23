@@ -1,3 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+  <string name="PhantomRole">Fantom</string>
+  <string name="GuardianAngelRole">Aniol Stroz</string>
+  <string name="Crewmate">Wspolnik</string>
+  <string name="DetectiveRole">Detektyw</string>
+  <string name="TrackerRole">Sledczy</string>
 </resources>
