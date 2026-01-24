@@ -154,17 +154,6 @@ public static class CustomLocale
             text = translation;
         }
 
-        text = Regex.Replace(text, @"\%([^%]+)\%", @"<$1>");
-        if (text.Contains("\\<"))
-        {
-            text = text.Replace("\\<", "<");
-        }
-
-        if (text.Contains("\\>"))
-        {
-            text = text.Replace("\\>", ">");
-        }
-
         foreach (var tmpText in TmpTextList.Where(x => text.Contains(x.Key)))
         {
             text = text.Replace(tmpText.Key, tmpText.Value);
@@ -268,6 +257,20 @@ public static class CustomLocale
                         {
                             var ogValuePair = localeList[language].FirstOrDefault(x => x.Key == name);
                             localeList[language].Remove(ogValuePair.Key);
+                        }
+
+                        if (value.Contains("\\%"))
+                        {
+                            value = Regex.Replace(value, @"\%([^%]+)\%", @"<$1>");
+                            if (value.Contains("\\<"))
+                            {
+                                value = value.Replace("\\<", "<");
+                            }
+
+                            if (value.Contains("\\>"))
+                            {
+                                value = value.Replace("\\>", ">");
+                            }
                         }
 
                         localeList[language].TryAdd(name, value);
