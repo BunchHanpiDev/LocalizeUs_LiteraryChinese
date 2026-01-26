@@ -149,9 +149,9 @@
   <string name="HowToPlayTextImp5">Sabotuj i zdezorientuj Załogę.</string>
   <string name="HowToPlayTextImp6">Zamknij drzwi aby uwięzić ofiary.</string>
   <string name="HowToPlayTextImp7">Zabijaj Załogę co odświeżenie.</string>
-  <string name="HowToPlayText5"/>
-  <string name="HowToPlayText6"/>
-  <string name="HowToPlayText7"/>
+  <string name="HowToPlayText5">Grając z innymi na żywo nie rozmawiajcie, aby zachować sprawiedliwą rozgrywkę.\%nl\%\%nl\%Gdy osoba zostanie wyeliminowania, nie może mówić dopóki gra się nie skończy.\%nl\%\%nl\%Duchy po śmierci dalej muszą robić zadania aby umożliwić załogantom wygraną.</string>
+  <string name="HowToPlayText6">Podczas spotkania załoga zbiera się by dyskutować co wiedzą o Intruzie.\%nl\%\%nl\%Gracze mogą otwarcie dzielić się swoją wiedzą o Intruzie oraz kim on może być. Grając z innymi, Duchy nie mogą rozmawiać gdyż już wiedzą kto jest Intruzem.\%nl\%\%nl\%Intruzi będą próbowali się obronić lub oskarżyć kogoś innego.</string>
+  <string name="HowToPlayText7">Po dyskusji, zagłosuj na tego kto według ciebie jest Intruzem.\%nl\%\%nl\%Osoba z największą ilością głosów zostanie wyrzucona ze statku, więc głosuj mądrze!\%nl\%\%nl\%Jeżeli ty i reszta załogi nie macie wystarczająco informacji, możecie pominąć głosowanie aby nie ryzykować wyrzuceniem kogoś niewinnego oraz zebrać więcej informacji.</string>
   <string name="HowToPlayText81">Poćwicz w Trybie Treningowym!</string>
   <string name="HowToPlayText82">Ustaw wybrane zadania jako Załogant, albo poćwicz swoje strategie jako Intruz!</string>
   <string name="SettingsGeneral">Ogólne</string>
@@ -941,4 +941,9 @@
   <string name="PoorLabel">SŁABE</string>
   <string name="GoodLabel">DOBRE</string>
   <string name="GoOffline">Przejdź w tryb offline</string>
+  <string name="ProceedLabel">PRZEJDŹ DALEJ</string>
+  <string name="LogLabel">USTAW</string>
+  <string name="ReadingLabel">ODCZYT</string>
+  <string name="WeatherDataDownload">POBIERZ DANE POGODY</string>
+  <string name="PetAlien1">Zestaw kosmo-pupili</string>
 </resources>
