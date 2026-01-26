@@ -127,7 +127,7 @@
   <string name="MeetingVotingEnds">Głosowanie zakończy się za: {0}s</string>
   <string name="MeetingVotingResults">Wyniki Głosowania</string>
   <string name="MeetingProceeds">Koniec Spotkania: {0}s</string>
-  <string name="MeetingHasVoted">{0} zagłosował. Pozostało {1} osób.</string>
+  <string name="MeetingHasVoted">{0} zagłosował. Oczekiwanie na pozostałych graczy ({1}) .</string>
   <!-- Za długie jak na razie -->
     <string name="HowToPlayText1">Among Us to gra współpracy, ale także zdrady.\%nl\%\%nl\%Gracze mogą być zarówno Załogantami, jak i Intruzami.</string>
   <string name="HowToPlayText2">Graj online, albo lokalnie od 4 do 15 graczy!</string>
@@ -152,7 +152,7 @@
   <string name="HowToPlayText5"></string>
   <string name="HowToPlayText6"></string>
   <string name="HowToPlayText7"></string>
-  <string name="HowToPlayText81"></string>
+  <string name="HowToPlayText81">Poćwicz w Trybie Treningowym!</string>
   <string name="HowToPlayText82"></string>
   <string name="SettingsGeneral">Ogólne</string>
   <string name="SettingsControls">Sterowanie</string>
@@ -472,7 +472,7 @@
   <string name="PlayersCategory">Crewmaci</string>
   <string name="TasksCategory">Zadania</string>
   <string name="InfoLabel">Info</string>
-  <string name="RoleQuotaLabel">Ilość Ról</string>
+  <string name="RoleQuotaLabel">Liczba Ról</string>
   <string name="OverviewCategory">Przegląd</string>
   <string name="LobbyChangeSettingNotification">Ustawiono {0} na {1}.</string>
   <string name="LobbyChangeSettingNotificationRole">Ustawiono {0} na {1}, z szansą równą {2}.</string>
@@ -875,4 +875,14 @@
   <string name="QCTagSelf">Ja</string>
   <string name="QCInputSelf">Ja</string>
   <string name="QCResRipNeg">wylotka</string>
+  <string name="MiraBundle">Pakiet MIRA HQ</string>
+  <string name="MiraSkinBundle">Pakiet skinów MIRA HQ</string>
+  <string name="PolusBundle">Pakiet Polus</string>
+  <string name="PolusSkinBundle">Pakiet skinów Polus</string>
+  <string name="AirshipBundle">Pakiet Airship</string>
+  <string name="RuleOneCrewmatesTitle">Rób zadania</string>
+  <string name="RuleTwoCrewmatesTitle">Dobrze się chowaj</string>
+  <string name="RuleOneImpostorTitle">Szybko morduj</string>
+  <string name="PetAction">Pogłaszcz</string>
+  <string name="Cosmetic.nameplate_shhh">Ciiiiiiiiiiiiii</string>
 </resources>
