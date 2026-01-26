@@ -16,7 +16,7 @@
   <!--Stupid google translate translation, Enjoy isn't a polish word-->
     <string name="GhostIgnoreTasks">Nie żyjesz. Ciesz się chaosem.</string>
   <string name="GhostDoTasks">Nie żyjesz. Dokończ swoje zadania by wygrać.</string>
-  <string name="TotalTasksCompleted">Ilość wykonanych zadań</string>
+  <string name="TotalTasksCompleted">Wszystkie wykonane zadania</string>
   <string name="GhostImpostor">Nie żyjesz. Możesz nadal sabotować.</string>
   <string name="ImpostorTask">Sabotuj i zabij wszystkich.</string>
   <string name="FakeTasks">Fałszywe zadania:</string>
@@ -149,9 +149,9 @@
   <string name="HowToPlayTextImp5">Sabotuj i zdezorientuj Załogę.</string>
   <string name="HowToPlayTextImp6">Zamknij drzwi aby uwięzić ofiary.</string>
   <string name="HowToPlayTextImp7">Zabijaj Załogę co odświeżenie.</string>
-  <string name="HowToPlayText5"></string>
-  <string name="HowToPlayText6"></string>
-  <string name="HowToPlayText7"></string>
+  <string name="HowToPlayText5"/>
+  <string name="HowToPlayText6"/>
+  <string name="HowToPlayText7"/>
   <string name="HowToPlayText81">Poćwicz w Trybie Treningowym!</string>
   <string name="HowToPlayText82">Ustaw wybrane zadania jako Załogant, albo poćwicz swoje strategie jako Intruz!</string>
   <string name="SettingsGeneral">Ogólne</string>
@@ -181,8 +181,8 @@
   <string name="SettingsStreamerMode">Tryb Streamingowy</string>
   <string name="MatchMapName">Mapa</string>
   <string name="MatchLanguage">Język na Czacie</string>
-  <string name="MatchImpostors">Impostorów</string>
-  <string name="MatchMaxPlayers">Slotów</string>
+  <string name="MatchImpostors">Intruzi</string>
+  <string name="MatchMaxPlayers">Maks. Graczy</string>
   <string name="Cancel">Cofnij</string>
   <string name="Confirm">Zastosuj</string>
   <string name="PlayerColor">Kolor</string>
@@ -193,13 +193,13 @@
   <string name="GameRecommendedSettings">Rekomendowane Ustawienia</string>
   <string name="GameCustomSettings">Ustawienia Własne</string>
   <string name="GameMapName">Mapa</string>
-  <string name="GameNumImpostors"># Ilość Impostorów</string>
+  <string name="GameNumImpostors"># Ilość Intruzów</string>
   <string name="GameNumMeetings"># Ilość Spotkan Awaryjnych</string>
   <string name="GameDiscussTime">Czas Dyskutowania</string>
   <string name="GameVotingTime">Czas Głosowania</string>
   <string name="GamePlayerSpeed">Prędkość Gracza</string>
-  <string name="GameCrewLight">Wizja Crewmatów</string>
-  <string name="GameImpostorLight">Wizja Impostorów</string>
+  <string name="GameCrewLight">Wizja Załogantów</string>
+  <string name="GameImpostorLight">Wizja Intruzów</string>
   <string name="GameKillCooldown">Cooldown Zabijania</string>
   <string name="GameKillDistance">Odległość Zabijania</string>
   <string name="GameCommonTasks"># Zadania Powszechne</string>
@@ -940,4 +940,5 @@
   <string name="NoneLabel">ŻADNE</string>
   <string name="PoorLabel">SŁABE</string>
   <string name="GoodLabel">DOBRE</string>
+  <string name="GoOffline">Przejdź w tryb offline</string>
 </resources>
