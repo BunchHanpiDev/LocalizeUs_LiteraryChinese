@@ -434,7 +434,7 @@
   <string name="HideActionButton">Ukryj Się</string>
   <string name="HasBeenKilled">Został Zabity</string>
   <string name="Ghost">Duch</string>
-  <string name="CurrentlyHaunting">Obecnie śledzisz:</string>
+  <string name="CurrentlyHaunting">Obecnie Nawiedzasz:</string>
   <string name="RoundRobin">Rosyjska ruletka</string>
   <string name="PlayLabel">Graj</string>
   <string name="SettingsLabel">Ustawienia</string>
@@ -1124,4 +1124,16 @@
   <string name="Cosmetic.hat_pk02_StrawHat">Jak w przepisie mamusi</string>
   <string name="Cosmetic.hat_pk02_TenGallonHat">Szeryf z zachodu</string>
   <string name="Cosmetic.hat_pk02_ThirdEyeHat">Trzecie oko</string>
+  <string name="StatsHidenSeekGamesCrewmateSurvived">Gry Chowanego Przetrwane:	</string>
+  <string name="StatsHidenSeekTimesVented">Wenty Użyte w Chowanym:	</string>
+  <string name="StatsTimesPettedPet">Ilość Pogłaskanych Pupili:	</string>
+  <string name="StatsImpostorKills_HideAndSeek">Zabicia Jako Szukający:	</string>
+  <string name="StatsFastestCrewmateWin_HideAndSeek">Najszybsza Wygrana w Chowanego Jako Chowający:	</string>
+  <string name="StatsFastestImpostorWin_HideAndSeek">Najszybsza Wygrana w Chowanego Jako Szukający:	</string>
+  <string name="StatsHideAndSeekImpostorVictory">Wygrane w Chowanego Jako Szukający:	</string>
+  <string name="StatsHideAndSeekCrewmateVictory">Wygrane w Chowanego Jako Chowający:	</string>
+  <string name="SeekButton">Szukaj</string>
+  <string name="AmongUsAnnouncements">Ogłoszenia Among Us</string>
+  <string name="HauntAbilityName">Nawiedź</string>
+  <string name="RestorePurchases">Przywróć Zakupy</string>
 </resources>
