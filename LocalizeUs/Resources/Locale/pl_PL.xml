@@ -225,7 +225,7 @@
   <string name="InsertKeys">Włóż Klucz</string>
   <string name="ResetSeismic">Zresetuj Stabilizatory Sejsmiczne</string>
   <string name="SeismicHoldToStop">Przytrzymaj by Aktywować Stabilizator Sejsmiczny</string>
-  <string name="SeismicNominal">Aktywność Sejsmiczna Nominalna</string>
+  <string name="SeismicNominal">Aktywność Sejsmiczna Stabilna</string>
   <string name="ScanBoardingPass">Odbij Plakietkę</string>
   <string name="FixWeatherNode">Napraw Węzeł Pogodowy</string>
   <string name="OpenWaterways">Odkręć Zawory</string>
@@ -242,7 +242,7 @@
   <string name="Outside">Na Dworze</string>
   <string name="Dropship">Dropship</string>
   <string name="Decontamination2">Górna Dekontaminacja</string>
-  <string name="Specimens">Pokój Próbkowy</string>
+  <string name="Specimens">Pokój Próbek</string>
   <string name="BoilerRoom">Kotłownia</string>
   <string name="ServerNA">Ameryka Północna</string>
   <string name="ServerEU">Europa</string>
@@ -859,8 +859,8 @@
   <string name="SuccessLogIn">Powiodło się logowanie na twoje konto!</string>
   <string name="UserName">NAZWA UŻYTKOWNIKA</string>
   <string name="RandomizeName">Wylosuj nazwę</string>
-  <string name="ChangeName">Zmień nazwę</string>
-  <string name="GuardianWait">Musisz poczekać aż twój opiekun nada ci pozwolenie do używania Wolnego Czatu i zmienienia nazwy użytkownika.</string>
+  <string name="ChangeName">Zmień Nazwę</string>
+  <string name="GuardianWait">Poczekaj aż twój Opiekun Prawny udzieli ci pozwolenia by używać Wolnego Chatu i zmieniać nazwę</string>
   <string name="EmailResend">Wyślij ponownie E-mail</string>
   <string name="GuardianEmailSent">E-mail do opiekuna został wysłany.</string>
   <string name="GuardianCheckEmail">Nie zapomnij aby twój opiekun sprawdził swój e-mail w celu odblokowania wszystkich funkcji gry</string>
