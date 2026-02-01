@@ -1325,4 +1325,12 @@
   <string name="RolesHelpIntro_01">Role dodają do gry zupełnie nowy poziom strategii i oszustw!</string>
   <string name="RolesHelpIntro_02">Zarówno Załoganci jak i Intruzi mogą dostać losowe rolę, zależnie od ustawień gry wybranych przez hosta.</string>
   <string name="RolesHelp_Scientist_01">Naukowiec ma dostęp do przenośnego panelu vitals, którego może użyć gdziekolwiek, aby sprawdzić kto z Załogi żyje, a kto nie.</string>
+  <string name="QCLetsWaitPlayers">Może poczekamy na więcej osób?</string>
+  <string name="HostYouLabel">(Ty!)</string>
+  <string name="HostNounLabel">Host:</string>
+  <string name="QCPleaseWait">Poczekaj zanim zaczniesz grę</string>
+  <string name="QCWaitMinute">Poczekaj chwilę zanim zaczniesz grę</string>
+  <string name="QCLobbyClosing">Lobby zaraz zostanie zamknięte</string>
+  <string name="QCChangeCosmetics">Muszę zmienić swoje przebrania</string>
+  <string name="QCWaitingPlayers">Czekam na więcej graczy…</string>
 </resources>
