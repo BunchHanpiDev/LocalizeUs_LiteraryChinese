@@ -612,7 +612,7 @@
   <string name="QCLocation">Lokalizacja</string>
   <string name="QCSystems">Systemy</string>
   <string name="QCCrew">Załoga</string>
-  <string name="QCAccusation">Oskarżenie</string>
+  <string name="QCAccusation">Oskarżenia</string>
   <string name="QCResponse">Odpowiedź</string>
   <string name="QCQuestion">Pytanie</string>
   <string name="QCStatements">Oświadczenia</string>
@@ -1417,4 +1417,7 @@
   <string name="UnlinkError">Coś poszło nie tak w rozłączaniu twojego konta. Spróbuj ponownie później.</string>
   <string name="UnlinkSuccess">Powiodło się rozłączenie {0} od twojego głównego konta Among Us!</string>
   <string name="ConfirmLinkExistingAccount">Potwierdź połączenie do istniejącego konta</string>
+  <string name="BeginLabel">ZACZNIJ</string>
+  <string name="ShowAccountSupportID5">Pokaż ID konta</string>
+  <string name="Cosmetic.hat_2026nye">Nowy Rok 2026</string>
 </resources>
