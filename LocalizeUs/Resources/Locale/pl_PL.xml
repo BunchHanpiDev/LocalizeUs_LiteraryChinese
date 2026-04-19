@@ -851,7 +851,7 @@
   <string name="QCResUhOh">Uh-oh</string>
   <string name="SecurityLogsSystem">Logi</string>
   <string name="SecurityCamsSystem">Kamery bezpieczeństwa</string>
-  <string name="AdminMapSystem">Mapa Admina</string>
+  <string name="AdminMapSystem">Mapa Administracyjna</string>
   <string name="VitalsSystem">Monitor vitalsów</string>
   <string name="EngagementScreenSignIn">Logowanie...</string>
   <string name="SaveGameOutOfSpaceCancel">Spróbuj ponownie</string>
