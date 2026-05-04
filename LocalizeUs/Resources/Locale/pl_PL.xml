@@ -161,7 +161,7 @@
   <string name="SettingsData">Dane</string>
   <string name="SettingsCensorChat">Cenzura Czatu</string>
   <string name="SettingsMusic">Muzyka</string>
-  <string name="SettingsSFX">SFX</string>
+  <string name="SettingsSFX">Dźwięki</string>
   <string name="SettingsOn">Wł</string>
   <string name="SettingsOff">Wył</string>
   <string name="SettingsSendTelemetry">Wysyłaj Dane Telemetryczne</string>
@@ -178,7 +178,7 @@
   <string name="SettingsLanguage">Język</string>
   <string name="SettingsJoystickSize">Rozmiar</string>
   <string name="SettingsMouseMode">Myszka</string>
-  <string name="SettingsStreamerMode">Tryb Streamingowy</string>
+  <string name="SettingsStreamerMode">Tryb Streamera</string>
   <string name="MatchMapName">Mapa</string>
   <string name="MatchLanguage">Język na Czacie</string>
   <string name="MatchImpostors">Intruzi</string>
@@ -291,7 +291,7 @@
   <string name="ColorYellow">ŻÓŁTY</string>
   <string name="ColorBlack">CZARNY</string>
   <string name="ColorPurple">FIOLETOWY</string>
-  <string name="ColorCyan">TURKUSOWY</string>
+  <string name="ColorCyan">CYJANOWY</string>
   <string name="ColorLime">LIMONKOWY</string>
   <string name="ColorMaroon">BORDOWY</string>
   <string name="ColorRose">RÓŻOWY</string>
@@ -974,7 +974,7 @@
   <string name="ShowAccountSupportID2">Nie pokazuj gdy streamujesz (2)</string>
   <string name="ShowAccountSupportID1">Zdecydowanie pokaż ID (1)</string>
   <string name="SupportIDLabel">ID pomocy technicznej: {0}</string>
-  <string name="SupportEmail">Proszę się skontaktować z support@innersloth.com w przypadku pomocy technicznej.</string>
+  <string name="SupportEmail">Proszę się skontaktować z support@innersloth.com w potrzebie pomocy technicznej.</string>
   <string name="PerfectLabel">DOSKONALE</string>
   <string name="PSNErrorSessionFailed">Coś poszło nie tak z aktualną sesją gry</string>
   <string name="PSNErrorSessionJoinFailed">Nie udało się dołączyć do sesji gry</string>
@@ -1067,7 +1067,7 @@
   <string name="Cosmetic.hat_Herohood_Red">Leśny Wojownik - czerwony</string>
   <string name="Cosmetic.hat_Herohood_White">Leśny Wojownik - biały</string>
   <string name="Cosmetic.hat_Herohood_Yellow">Leśny Wojownik - żółty</string>
-  <string name="Cosmetic.hat_Janitor"></string>
+  <string name="Cosmetic.hat_Janitor"/>
   <string name="Cosmetic.hat_MilitaryWinter">Bojownik - zimowy</string>
   <string name="Cosmetic.hat_MinerBlack">Kret - czarny</string>
   <string name="Cosmetic.hat_MinerYellow">Kret - żółty</string>
@@ -1424,7 +1424,7 @@
   <string name="Cosmetic.visor_stardew_linus">Broda Linusa</string>
   <string name="Cosmetic.skin_stardew_linus">Liście Linusa</string>
   <string name="Cosmetic.hat_stardew_chickenBlue">Pierzasty Przyjaciel - Niebieski</string>
-  <string name="Cosmetic.hat_stardew_chickenVoid">Pierzasty Przyjaciel - Próżniowy</string>
+  <string name="Cosmetic.hat_stardew_chickenVoid">Pierzasty Przyjaciel - Ciemny</string>
   <string name="Cosmetic.hat_stardew_chickenWhite">Pierzasty Przyjaciel - Biały</string>
   <string name="Cosmetic.hat_stardew_egg">Jajko Próżni</string>
   <string name="Cosmetic.hat_stardew_straw">Słomiany Kapelusz</string>
@@ -1615,4 +1615,5 @@
   <string name="RolesHelp_Noisemaker_01">Krzykarz jest nietypową rolą Załogancką. Nie posiada on własnej umiejętności którą mógłby użyć. Zamiast tego, automatycznie wysyła alarm w chwili zabicia przez Intruza.</string>
   <string name="RolesHelp_Noisemaker_02">Alarm ten z łatwością wpędza Intruza w panikę, w chwili gdy ty się przyglądasz jak reszta załogi biegnie na miejsce zbrodni aby złapać twojego mordercę i pomścić twą śmierć!</string>
   <string name="StatsShapeshifterShiftedKills">Zabójstwa Zmiennokształtnego podczas przebrania:	</string>
+  <string name="FriendList">Lista Znajomych</string>
 </resources>
