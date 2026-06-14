@@ -15,13 +15,17 @@ public static class TmpAwakePatch
     {
         if (__instance.font.name == "LiberationSans SDF")
         {
-            // The custom LiberationSans Extended font may use different SDF
-            // material parameters (e.g. _FaceDilate) than the original, causing
-            // text to render bolder/darker. Copy the original font's key SDF
-            // parameters to the replacement font's shared material once.
+            // The custom LiberationSans Extended font asset ships with a basic
+            // SDF material that differs from the original in two ways:
+            //   1. SDF parameters (e.g. _FaceDilate) differ → text looks bolder
+            //   2. The shader variant may lack outline support → text loses its
+            //      outline stroke (visible on player names in chat bubbles etc.)
+            //
+            // Fix both by copying the original material's shader and rendering
+            // properties to the replacement font's material (once, statically).
             if (!_sharedMaterialAdjusted)
             {
-                CopySdfParams(__instance.font.material, LocaleUsAssets.LibSansRegTmp.material);
+                FixupFontMaterial(__instance.font.material, LocaleUsAssets.LibSansRegTmp.material);
                 _sharedMaterialAdjusted = true;
             }
 
@@ -35,22 +39,58 @@ public static class TmpAwakePatch
         __instance.ForceMeshUpdate(false, false);
     }
 
-    private static void CopySdfParams(Material from, Material to)
+    /// <summary>
+    /// Copies the original font material's shader and rendering properties
+    /// to the replacement font material, while preserving the replacement
+    /// font's atlas texture (which holds the extended character glyphs).
+    /// </summary>
+    private static void FixupFontMaterial(Material orig, Material repl)
     {
-        CopyProperty("_FaceDilate");
-        CopyProperty("_OutlineWidth");
-        CopyProperty("_OutlineSoftness");
-        CopyProperty("_ScaleRatioA");
-        CopyProperty("_ScaleRatioB");
-        CopyProperty("_ScaleRatioC");
+        // Preserve the replacement font's atlas texture.
+        var replAtlas = repl.mainTexture;
+
+        // Adopt the original material's shader so that outline, underlay,
+        // and other rendering features match the base game exactly.
+        repl.shader = orig.shader;
+
+        // Restore the atlas — changing the shader may reset it.
+        repl.mainTexture = replAtlas;
+
+        // Copy scalar SDF properties that control glyph weight and spacing.
+        CopyFloat("_FaceDilate");
+        CopyFloat("_OutlineWidth");
+        CopyFloat("_OutlineSoftness");
+        CopyFloat("_UnderlayDilate");
+        CopyFloat("_UnderlaySoftness");
+        CopyFloat("_UnderlayOffsetX");
+        CopyFloat("_UnderlayOffsetY");
+        CopyFloat("_GlowPower");
+        CopyFloat("_GlowOffset");
+        CopyFloat("_ScaleRatioA");
+        CopyFloat("_ScaleRatioB");
+        CopyFloat("_ScaleRatioC");
+        CopyFloat("_WeightNormal");
+        CopyFloat("_WeightBold");
+        CopyFloat("_Sharpness");
+
+        // Copy color properties (outline color, face color, underlay color).
+        CopyColor("_OutlineColor");
+        CopyColor("_FaceColor");
+        CopyColor("_UnderlayColor");
+        CopyColor("_GlowColor");
+
         return;
 
-        void CopyProperty(string name)
+        void CopyFloat(string name)
         {
-            if (from.HasProperty(name) && to.HasProperty(name))
-            {
-                to.SetFloat(name, from.GetFloat(name));
-            }
+            if (orig.HasProperty(name) && repl.HasProperty(name))
+                repl.SetFloat(name, orig.GetFloat(name));
+        }
+
+        void CopyColor(string name)
+        {
+            if (orig.HasProperty(name) && repl.HasProperty(name))
+                repl.SetColor(name, orig.GetColor(name));
         }
     }
 }
