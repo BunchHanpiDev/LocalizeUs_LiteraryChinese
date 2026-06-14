@@ -1,13 +1,12 @@
 using HarmonyLib;
 using TMPro;
-using UnityEngine;
 
 namespace LocalizeUs.Patches;
 
 [HarmonyPatch]
 public static class TmpAwakePatch
 {
-    private static bool _sharedMaterialAdjusted;
+    private static bool _fallbackRegistered;
 
     [HarmonyPatch(typeof(TextMeshPro), nameof(TextMeshPro.Awake))]
     [HarmonyPostfix]
@@ -15,42 +14,47 @@ public static class TmpAwakePatch
     {
         if (__instance.font.name == "LiberationSans SDF")
         {
-            // The custom LiberationSans Extended font may use different SDF
-            // material parameters (e.g. _FaceDilate) than the original, causing
-            // text to render bolder/darker. Copy the original font's key SDF
-            // parameters to the replacement font's shared material once.
-            if (!_sharedMaterialAdjusted)
+            // Instead of replacing the font entirely (which causes rendering
+            // differences in weight, outline, and breaks other asset-bundle
+            // fonts), register the extended font as a fallback on the original
+            // LiberationSans. The original font renders Latin text exactly as
+            // the base game does; the extended font only kicks in for glyphs
+            // that are missing from the original (e.g. ĄČĘĖĮŠŲŪŽ).
+            if (!_fallbackRegistered)
             {
-                CopySdfParams(__instance.font.material, LocaleUsAssets.LibSansRegTmp.material);
-                _sharedMaterialAdjusted = true;
+                RegisterFallback(__instance.font, LocaleUsAssets.LibSansRegTmp);
+                _fallbackRegistered = true;
             }
-
-            __instance.font = LocaleUsAssets.LibSansRegTmp;
         }
         /*else if (component.font.name == "Brook SDF" && CustomLocale.LangsWithCustomFont.Contains(auLang))
         {
             ogBrookTmp = component.font;
             component.font = LocaleUsAssets.AmaticScBoldTmp;
         }*/
-        __instance.ForceMeshUpdate(false, false);
     }
 
-    private static void CopySdfParams(Material from, Material to)
+    private static void RegisterFallback(TMP_FontAsset mainFont, TMP_FontAsset fallbackFont)
     {
-        CopyProperty("_FaceDilate");
-        CopyProperty("_OutlineWidth");
-        CopyProperty("_OutlineSoftness");
-        CopyProperty("_ScaleRatioA");
-        CopyProperty("_ScaleRatioB");
-        CopyProperty("_ScaleRatioC");
-        return;
+        var fallbacks = mainFont.fallbackFontAssetTable;
 
-        void CopyProperty(string name)
+        // Check whether the fallback is already registered.
+        if (fallbacks != null)
         {
-            if (from.HasProperty(name) && to.HasProperty(name))
+            foreach (var f in fallbacks)
             {
-                to.SetFloat(name, from.GetFloat(name));
+                if (f == fallbackFont)
+                    return;
             }
         }
+
+        // Create or extend the fallback list.
+        var newList = new Il2CppSystem.Collections.Generic.List<TMP_FontAsset>();
+        if (fallbacks != null)
+        {
+            foreach (var f in fallbacks)
+                newList.Add(f);
+        }
+        newList.Add(fallbackFont);
+        mainFont.fallbackFontAssetTable = newList;
     }
 }
